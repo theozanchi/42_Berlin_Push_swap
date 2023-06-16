@@ -6,7 +6,7 @@
 #    By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/15 16:37:47 by tzanchi           #+#    #+#              #
-#    Updated: 2023/06/15 17:22:00 by tzanchi          ###   ########.fr        #
+#    Updated: 2023/06/16 16:02:57 by tzanchi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,13 +19,15 @@ SRCS_DIR	=	./sources/
 HEAD_DIR	=	./includes/
 LIBFT_DIR	=	./libft/
 
-SRC			=	utils1.c \
-				utils2.c \
-				utils3.c
+SRC			=	utils1.c
+
+TEMP_TEST	=	temp_tests.c
 
 SRCS		=	$(addprefix ${SRCS_DIR}, ${SRC})
 
 OBJS		=	${SRCS:.c=.o}
+
+TEST_OBJS	=	${TEMP_TEST:.c=.o}
 
 all:			
 				make ${LIBFT}
@@ -33,11 +35,13 @@ all:
 
 ${LIBFT}:
 				make -C ${LIBFT_DIR}
+				mv ${LIBFT_DIR}/${LIBFT} .
 
 ${NAME}:		${OBJS} ${LIBFT}
+				${CC} ${CFLAGS} ${SRCS} -I${HEAD_DIR} ${LIBFT} -o ${NAME}
 
 .c.o:
-				${CC} ${CFLAGS} -I${HEAD_DIR} -I${LIBFT_DIR} -c $< -o $@
+				${CC} ${CFLAGS} -I${HEAD_DIR} -c $< -o $@
 				
 clean:
 				make -C ${LIBFT_DIR} clean
@@ -49,4 +53,12 @@ fclean:			clean
 
 re:				fclean all
 
-.PHONY:			all clean fclean re
+test:
+				make ${LIBFT}
+				make ${OBJS} ${TEST_OBJS}
+				${CC} ${CFLAGS} ${SRCS} ${TEMP_TEST} -I${HEAD_DIR} ${LIBFT}
+				make fclean
+				rm -f ${TEST_OBJS}
+				clear
+
+.PHONY:			all clean fclean re test

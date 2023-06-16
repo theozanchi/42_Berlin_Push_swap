@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   temp_tests.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/15 17:03:27 by tzanchi           #+#    #+#             */
-/*   Updated: 2023/06/16 15:47:23 by tzanchi          ###   ########.fr       */
+/*   Created: 2023/06/16 13:21:06 by tzanchi           #+#    #+#             */
+/*   Updated: 2023/06/16 15:58:59 by tzanchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "push_swap.h"
 
-# include "../libft/libft.h"
+void	swap(t_stack **s);
 
-typedef struct s_stack
+int	main(void)
 {
-	int				value;
-	int				index;
-	struct s_stack	*next;
-}	t_stack;
+	t_stack	*head;
 
-/*utils*/
-void	sa(t_stack **a);
-
-#endif
+	head = malloc(sizeof(t_stack));
+	head->value = 4200;
+	head->index = 1;
+	head->next = malloc(sizeof(t_stack));
+	head->next->value = 2400;
+	head->next->index = 2;
+	head->next->next = NULL;
+	swap(&head);
+	while (head)
+	{
+		ft_printf("%i\n", head->value);
+		head = head->next;
+	}
+}
