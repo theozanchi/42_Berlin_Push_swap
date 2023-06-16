@@ -6,7 +6,7 @@
 /*   By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 16:48:10 by tzanchi           #+#    #+#             */
-/*   Updated: 2023/06/16 15:30:28 by tzanchi          ###   ########.fr       */
+/*   Updated: 2023/06/16 16:16:13 by tzanchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /*Swap the two first elements of the stack s if there are at least two elements
 in it*/
-void	swap(t_stack **s)
+static void	swap(t_stack **s)
 {
 	t_stack	*first;
 	t_stack	*second;
@@ -42,4 +42,13 @@ void	sb(t_stack **b)
 {
 	swap(b);
 	ft_printf("sb\n");
+}
+
+/*Swap the first 2 elements at the top of stack a and b and print 'ss'
+Do nothing in one of the stqcks if there is only one or no elements in it*/
+void	ss(t_stack **a, t_stack **b)
+{
+	swap(a);
+	swap(b);
+	ft_printf("ss\n");
 }
