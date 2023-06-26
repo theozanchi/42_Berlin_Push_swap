@@ -6,7 +6,7 @@
 #    By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/15 16:37:47 by tzanchi           #+#    #+#              #
-#    Updated: 2023/06/16 17:41:35 by tzanchi          ###   ########.fr        #
+#    Updated: 2023/06/26 15:48:48 by tzanchi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ SRCS_DIR	=	./sources/
 HEAD_DIR	=	./includes/
 LIBFT_DIR	=	./libft/
 
-SRC			=	utils1_swap.c \
+SRC			=	main.c \
+				utils1_swap.c \
 				utils2_push.c \
 				utils3_rotate.c \
 				utils4_revrotate.c
