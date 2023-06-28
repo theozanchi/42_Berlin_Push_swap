@@ -6,12 +6,13 @@
 /*   By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 17:04:18 by tzanchi           #+#    #+#             */
-/*   Updated: 2023/06/28 18:57:17 by tzanchi          ###   ########.fr       */
+/*   Updated: 2023/06/28 19:00:49 by tzanchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*Returns 1 if all the parameters of argv are digits*/
 static int	all_parameters_are_integers(char **argv)
 {
 	int	i;
@@ -32,6 +33,7 @@ static int	all_parameters_are_integers(char **argv)
 	return (1);
 }
 
+/*Returns 1 if all the parameters of argv are distinct*/
 static int	no_parameter_is_repeating(char **argv)
 {
 	int	i;
@@ -52,6 +54,7 @@ static int	no_parameter_is_repeating(char **argv)
 	return (1);
 }
 
+/*Returns 1 if the argv array is not sorted*/
 static int	parameters_are_not_already_sorted(char **argv)
 {
 	int	i;
@@ -66,6 +69,10 @@ static int	parameters_are_not_already_sorted(char **argv)
 	return (0);
 }
 
+/*Returns 1 if the input is valid:
+• All the parameters are numbers
+• All the parameters are distinct
+• The stack is not already sorted*/
 int	input_is_valid(char **argv)
 {
 	if (all_parameters_are_integers(argv))
