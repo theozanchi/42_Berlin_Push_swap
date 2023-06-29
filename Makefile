@@ -6,7 +6,7 @@
 #    By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/15 16:37:47 by tzanchi           #+#    #+#              #
-#    Updated: 2023/06/28 17:15:11 by tzanchi          ###   ########.fr        #
+#    Updated: 2023/06/29 11:26:20 by tzanchi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ HEAD_DIR	=	./includes/
 LIBFT_DIR	=	./libft/
 
 SRC			=	input_validation.c \
+				main.c \
 				utils1_swap.c \
 				utils2_push.c \
 				utils3_rotate.c \
