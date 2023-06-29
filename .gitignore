@@ -4,3 +4,4 @@ a.out
 *.o
 push_swap.dSYM*
 push_swap_visualizer
+imgui.ini
