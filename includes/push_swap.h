@@ -6,7 +6,7 @@
 /*   By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:03:27 by tzanchi           #+#    #+#             */
-/*   Updated: 2023/06/30 20:15:27 by tzanchi          ###   ########.fr       */
+/*   Updated: 2023/06/30 20:28:39 by tzanchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ typedef struct s_stack
 int		input_is_valid(char **argv);
 
 /*utils*/
-void	push(t_stack **a, t_stack **b, char c);
-void	swap(t_stack **a, t_stack **b, char c);
-void	rotate(t_stack **a, t_stack **b, char c);
-void	reverse_rotate(t_stack **a, t_stack **b, char c);
+void	push(t_stack **a, t_stack **b, char a_or_b);
+void	swap(t_stack **a, t_stack **b, char a_b_or_s);
+void	rotate(t_stack **a, t_stack **b, char a_b_or_r);
+void	reverse_rotate(t_stack **a, t_stack **b, char a_b_or_r);
 
 #endif
