@@ -6,7 +6,7 @@
 #    By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/15 16:37:47 by tzanchi           #+#    #+#              #
-#    Updated: 2023/06/29 17:34:25 by tzanchi          ###   ########.fr        #
+#    Updated: 2023/06/30 19:21:51 by tzanchi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,10 +21,7 @@ LIBFT_DIR	=	./libft/
 
 SRC			=	input_validation.c \
 				main.c \
-				utils1_swap.c \
-				utils2_push.c \
-				utils3_rotate.c \
-				utils4_revrotate.c
+				utils.c
 
 TEMP_TEST	=	temp_tests.c
 
