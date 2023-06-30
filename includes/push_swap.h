@@ -6,7 +6,7 @@
 /*   By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:03:27 by tzanchi           #+#    #+#             */
-/*   Updated: 2023/06/30 18:33:36 by tzanchi          ###   ########.fr       */
+/*   Updated: 2023/06/30 20:15:27 by tzanchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,7 @@ int		input_is_valid(char **argv);
 /*utils*/
 void	push(t_stack **a, t_stack **b, char c);
 void	swap(t_stack **a, t_stack **b, char c);
-void	ra(t_stack **a);
-void	rb(t_stack **b);
-void	rr(t_stack **a, t_stack **b);
-void	rra(t_stack **a);
-void	rrb(t_stack **b);
-void	rrr(t_stack **a, t_stack **b);
+void	rotate(t_stack **a, t_stack **b, char c);
+void	reverse_rotate(t_stack **a, t_stack **b, char c);
 
 #endif
