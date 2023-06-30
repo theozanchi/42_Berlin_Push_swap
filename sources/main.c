@@ -6,7 +6,7 @@
 /*   By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 15:30:04 by tzanchi           #+#    #+#             */
-/*   Updated: 2023/06/30 20:19:36 by tzanchi          ###   ########.fr       */
+/*   Updated: 2023/06/30 20:40:35 by tzanchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,14 @@ int	main(int argc, char **argv)
 	i = 5;
 	while (i--)
 		push(&a, &b, 'b');
-	reverse_rotate(&a, &b, 'b');
+	rotate(&a, &b, 'b');
 	ft_printf("\nStack A\n");
 	while (a)
 	{
 		ft_printf("%d ", a->value);
 		a = a->next;
 	}
-	ft_printf("\nStack B\n");
+	ft_printf("\n\nStack B\n");
 	while (b)
 	{
 		ft_printf("%d ", b->value);
