@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_standard.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 16:48:06 by tzanchi           #+#    #+#             */
-/*   Updated: 2023/06/30 20:37:46 by tzanchi          ###   ########.fr       */
+/*   Updated: 2023/06/30 21:31:53 by tzanchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /*Adds the element from one stack to the other (a->b or b->a) and prints the
-operation*/
+operation
+The stack index is updated after the operation*/
 void	push(t_stack **a, t_stack **b, char a_or_b)
 {
 	t_stack	*temp;
@@ -24,6 +25,8 @@ void	push(t_stack **a, t_stack **b, char a_or_b)
 		*b = (*b)->next;
 		temp->next = *a;
 		*a = temp;
+		update_index(a);
+		update_index(b);
 	}
 	if (a_or_b == 'b' && *a)
 	{
@@ -31,12 +34,15 @@ void	push(t_stack **a, t_stack **b, char a_or_b)
 		*a = (*a)->next;
 		temp->next = *b;
 		*b = temp;
+		update_index(a);
+		update_index(b);
 	}
 	ft_printf("p%c\n", a_or_b);
 }
 
 /*Swap the two first elements of one or two stack depending on 'a_b_or_s'and
-prints the operation*/
+prints the operation
+The stack index is updated after the operation*/
 void	swap(t_stack **a, t_stack **b, char a_b_or_s)
 {
 	t_stack	*first;
@@ -46,6 +52,8 @@ void	swap(t_stack **a, t_stack **b, char a_b_or_s)
 	{
 		first = *a;
 		second = (*a)->next;
+		first->index = 1;
+		second->index = 0;
 		first->next = second->next;
 		second->next = first;
 		*a = second;
@@ -54,6 +62,8 @@ void	swap(t_stack **a, t_stack **b, char a_b_or_s)
 	{
 		first = *b;
 		second = (*b)->next;
+		first->index = 1;
+		second->index = 0;
 		first->next = second->next;
 		second->next = first;
 		*b = second;
@@ -61,23 +71,9 @@ void	swap(t_stack **a, t_stack **b, char a_b_or_s)
 	ft_printf("s%c\n", a_b_or_s);
 }
 
-/*Returns the last element of a stack 's'*/
-static t_stack	*get_second_last(t_stack *s)
-{
-	t_stack	*second_last;
-
-	if (!s)
-		return (NULL);
-	while (s->next)
-	{
-		second_last = s;
-		s = s->next;
-	}
-	return (second_last);
-}
-
 /*Shift up all elements of one or two stack depending on 'a_b_or_r' by 1.
-The first element becomes the last one.*/
+The first element becomes the last one.
+The stack index is updated after the operation*/
 void	rotate(t_stack **a, t_stack **b, char a_b_or_r)
 {
 	t_stack	*first;
@@ -90,6 +86,7 @@ void	rotate(t_stack **a, t_stack **b, char a_b_or_r)
 		*a = first->next;
 		first->next = NULL;
 		last->next = first;
+		update_index(a);
 	}
 	if ((a_b_or_r == 'b' || a_b_or_r == 'r') && *b && (*b)->next)
 	{
@@ -98,12 +95,14 @@ void	rotate(t_stack **a, t_stack **b, char a_b_or_r)
 		*b = first->next;
 		first->next = NULL;
 		last->next = first;
+		update_index(b);
 	}
 	ft_printf("r%c\n", a_b_or_r);
 }
 
 /*Shift down all elements of one or two stack depending on 'a_b_or_r' by 1.
-The last element becomes the first one.*/
+The last element becomes the first one.
+The stack index is updated after the operation*/
 void	reverse_rotate(t_stack **a, t_stack **b, char a_b_or_r)
 {
 	t_stack	*second_last;
@@ -117,6 +116,7 @@ void	reverse_rotate(t_stack **a, t_stack **b, char a_b_or_r)
 		second_last->next = NULL;
 		last->next = *a;
 		*a = last;
+		update_index(a);
 	}
 	if ((a_b_or_r == 'b' || a_b_or_r == 'r') && *b && (*b)->next)
 	{
@@ -125,6 +125,7 @@ void	reverse_rotate(t_stack **a, t_stack **b, char a_b_or_r)
 		second_last->next = NULL;
 		last->next = *b;
 		*b = last;
+		update_index(b);
 	}
 	ft_printf("rr%c\n", a_b_or_r);
 }

@@ -6,7 +6,7 @@
 #    By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/15 16:37:47 by tzanchi           #+#    #+#              #
-#    Updated: 2023/06/30 19:21:51 by tzanchi          ###   ########.fr        #
+#    Updated: 2023/06/30 21:20:59 by tzanchi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ LIBFT_DIR	=	./libft/
 
 SRC			=	input_validation.c \
 				main.c \
-				utils.c
+				utils_stack_manip.c \
+				utils_standard.c
 
 TEMP_TEST	=	temp_tests.c
 
