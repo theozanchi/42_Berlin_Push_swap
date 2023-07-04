@@ -6,7 +6,7 @@
 /*   By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 15:30:04 by tzanchi           #+#    #+#             */
-/*   Updated: 2023/06/30 21:40:31 by tzanchi          ###   ########.fr       */
+/*   Updated: 2023/07/04 10:37:42 by tzanchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 of an integer, its index in the list and a pointer to next node
 b is initialized and set to NULL
 Returns the length of the stack created*/
-size_t	init_stacks(t_stack **a, t_stack **b, char **argv)
+void	init_stacks(t_stack **a, t_stack **b, char **argv)
 {
 	size_t	index;
 
@@ -31,57 +31,21 @@ size_t	init_stacks(t_stack **a, t_stack **b, char **argv)
 	}
 	*b = malloc(sizeof(t_stack));
 	*b = NULL;
-	return (index);
 }
 
 int	main(int argc, char **argv)
 {
 	t_stack	*a;
 	t_stack	*b;
-	t_stack	*temp;
-	size_t	size;
-	int		i;
 
 	if (argc < 2 || !input_is_valid(argv + 1))
 	{
 		ft_printf("%s", ERROR_MESSAGE);
 		return (1);
 	}
-	size = init_stacks(&a, &b, argv + 1);
-	i = 5;
-	while (i--)
-		push(&a, &b, 'b');
-	reverse_rotate(&a, &b, 'r');
-	ft_printf("\nStack A\n");
-	temp = a;
-	ft_printf("Value: ");
-	while (a)
-	{
-		ft_printf("%d ", a->value);
-		a = a->next;
-	}
-	a = temp;
-	ft_printf("\nIndex: ");
-	while (a)
-	{
-		ft_printf("%d ", a->index);
-		a = a->next;
-	}
-	ft_printf("\nStack length: %d\n\nStack B\n", get_stack_length(temp));
-	ft_printf("Value: ");
-	temp = b;
-	while (b)
-	{
-		ft_printf("%d ", b->value);
-		b = b->next;
-	}
-	b = temp;
-	ft_printf("\nIndex: ");
-	while (b)
-	{
-		ft_printf("%d ", b->index);
-		b = b->next;
-	}
-	ft_printf("\nStack length: %d", get_stack_length(temp));
+	init_stacks(&a, &b, argv + 1);
+	sort_stacks(&a, &b);
+	free_stack(&a);
+	free_stack(&b);
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/03 13:32:19 by tzanchi           #+#    #+#              #
-#    Updated: 2023/05/30 17:24:55 by tzanchi          ###   ########.fr        #
+#    Updated: 2023/07/04 10:48:48 by tzanchi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRCS		=	ft_isalpha.c \
 				ft_isspace.c \
 				ft_strlen.c \
 				ft_memset.c \
+				ft_min.c \
 				ft_bzero.c \
 				ft_memcpy.c \
 				ft_memmove.c \
@@ -53,6 +54,7 @@ SRCS		=	ft_isalpha.c \
 				ft_lstnew.c \
 				ft_lstadd_front.c \
 				ft_lstsize.c \
+				ft_max.c \
 				ft_lstlast.c \
 				ft_lstadd_back.c \
 				ft_lstdelone.c \
@@ -61,7 +63,7 @@ SRCS		=	ft_isalpha.c \
 				ft_lstmap.c \
 				ft_printf.c \
 				ft_printf_writers.c \
-				get_next_line.c
+				get_next_line.c \
 
 OBJS		=	${SRCS:.c=.o}
 

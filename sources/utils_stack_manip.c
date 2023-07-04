@@ -6,7 +6,7 @@
 /*   By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 21:19:31 by tzanchi           #+#    #+#             */
-/*   Updated: 2023/06/30 21:39:55 by tzanchi          ###   ########.fr       */
+/*   Updated: 2023/07/03 17:49:16 by tzanchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,46 @@ void	update_index(t_stack **s)
 		ptr->index = index++;
 		ptr = ptr->next;
 	}
+}
+
+static void	get_b_extrema(t_stack *b, t_stacks_info *info)
+{
+	int		min;
+	size_t	min_index;
+	int		max;
+	size_t	max_index;
+
+	min = INT_MAX;
+	max = INT_MIN;
+	while (b)
+	{
+		if (b->value < min)
+		{
+			min = b->value;
+			min_index = b->index;
+		}
+		if (b->value > max)
+		{
+			max = b->value;
+			max_index = b->index;
+		}
+		b = b->next;
+	}
+	info->b_min = min;
+	info->b_min_index = min_index;
+	info->b_max = max;
+	info->b_max_index = max_index;
+}
+
+t_stacks_info	*get_stacks_info(t_stack **a, t_stack **b)
+{
+	t_stacks_info	*output;
+
+	output = malloc(sizeof(t_stacks_info));
+	if (!output)
+		return (NULL);
+	output->a_length = get_stack_length(*a);
+	output->b_length = get_stack_length(*b);
+	get_b_extrema(*b, output);
+	return (output);
 }
