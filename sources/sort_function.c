@@ -6,7 +6,7 @@
 /*   By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 12:53:45 by tzanchi           #+#    #+#             */
-/*   Updated: 2023/07/04 17:35:23 by tzanchi          ###   ########.fr       */
+/*   Updated: 2023/07/05 14:39:53 by tzanchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
   3. Push back everything to b*/
 void	sort_stacks(t_stack **a, t_stack **b)
 {
+	size_t	length;
+
 	push(a, b, 'b', 2);
-	find_best_element_to_move(a, b);
+	length = get_stack_length(*a);
+	while (length-- > 3)
+		find_best_element_to_move(a, b);
 }
