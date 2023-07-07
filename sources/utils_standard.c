@@ -6,7 +6,7 @@
 /*   By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 16:48:06 by tzanchi           #+#    #+#             */
-/*   Updated: 2023/07/04 16:53:06 by tzanchi          ###   ########.fr       */
+/*   Updated: 2023/07/07 15:52:06 by tzanchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,4 +136,19 @@ void	reverse_rotate(t_stack **a, t_stack **b, char a_b_or_r, int times)
 	}
 	ft_printf("rr%c\n", a_b_or_r);
 	reverse_rotate(a, b, a_b_or_r, times - 1);
+}
+
+/*Runs through the stack and updates the index of each element*/
+void	update_index(t_stack **s)
+{
+	size_t	index;
+	t_stack	*ptr;
+
+	index = 0;
+	ptr = *s;
+	while (ptr)
+	{
+		ptr->index = index++;
+		ptr = ptr->next;
+	}
 }

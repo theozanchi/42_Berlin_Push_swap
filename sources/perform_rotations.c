@@ -6,7 +6,7 @@
 /*   By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:54:56 by tzanchi           #+#    #+#             */
-/*   Updated: 2023/07/07 14:34:13 by tzanchi          ###   ########.fr       */
+/*   Updated: 2023/07/07 15:05:02 by tzanchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,12 @@ void	perform_rotations(t_stack **a, t_stack **b, t_cost cost)
 		else
 			rotate(a, b, 'b', cost.rotations_2);
 	}
+	if (cost.ops >= 9)
+		perform_rotations_2(a, b, cost);
+}
+
+void	perform_rotations_2(t_stack **a, t_stack **b, t_cost cost)
+{
 	if (cost.ops == RRR_RRA || cost.ops == RRR_RRB)
 	{
 		reverse_rotate(a, b, 'r', cost.rotations_1);

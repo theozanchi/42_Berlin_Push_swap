@@ -6,11 +6,28 @@
 /*   By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 15:30:04 by tzanchi           #+#    #+#             */
-/*   Updated: 2023/07/05 17:23:46 by tzanchi          ###   ########.fr       */
+/*   Updated: 2023/07/07 15:06:28 by tzanchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	main(int argc, char **argv)
+{
+	t_stack	*a;
+	t_stack	*b;
+
+	if (argc < 2 || !input_is_valid(argv + 1))
+	{
+		ft_printf("%s", ERROR_MESSAGE);
+		return (1);
+	}
+	init_stacks(&a, &b, argv + 1);
+	sort_stacks(&a, &b);
+	free_stack(&a);
+	free_stack(&b);
+	return (0);
+}
 
 /*Initialize stacks with the parameter string in a list. Each node is composed
 of an integer, its index in the list and a pointer to next node
@@ -33,19 +50,11 @@ void	init_stacks(t_stack **a, t_stack **b, char **argv)
 	*b = NULL;
 }
 
-int	main(int argc, char **argv)
+void	free_stack(t_stack	**head)
 {
-	t_stack	*a;
-	t_stack	*b;
-
-	if (argc < 2 || !input_is_valid(argv + 1))
-	{
-		ft_printf("%s", ERROR_MESSAGE);
-		return (1);
-	}
-	init_stacks(&a, &b, argv + 1);
-	sort_stacks(&a, &b);
-	free_stack(&a);
-	free_stack(&b);
-	return (0);
+	if (!head || !*head)
+		return ;
+	free_stack(&((*head)->next));
+	free(*head);
+	*head = NULL;
 }

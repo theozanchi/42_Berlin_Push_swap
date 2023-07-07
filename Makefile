@@ -6,7 +6,7 @@
 #    By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/15 16:37:47 by tzanchi           #+#    #+#              #
-#    Updated: 2023/07/04 15:55:14 by tzanchi          ###   ########.fr        #
+#    Updated: 2023/07/07 15:55:13 by tzanchi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,10 +20,9 @@ HEAD_DIR	=	./includes/
 LIBFT_DIR	=	./libft/
 
 SRC			=	cost_calculation.c \
-				free.c \
 				input_validation.c \
 				main.c \
-				perform_operations.c \
+				perform_rotations.c \
 				sort_function.c \
 				utils_stack_manip.c \
 				utils_standard.c

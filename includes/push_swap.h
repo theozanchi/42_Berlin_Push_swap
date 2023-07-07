@@ -6,7 +6,7 @@
 /*   By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:03:27 by tzanchi           #+#    #+#             */
-/*   Updated: 2023/07/07 14:39:54 by tzanchi          ###   ########.fr       */
+/*   Updated: 2023/07/07 16:11:06 by tzanchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct s_stacks_info
 	size_t	b_min_index;
 	int		b_max;
 	size_t	b_max_index;
-}	t_stacks_info;
+}	t_info;
 
 typedef struct s_cost
 {
@@ -61,33 +61,44 @@ typedef struct s_cost
 }	t_cost;
 
 /*cost_calculation*/
-void			push_from_a_to_b(t_stack **a, t_stack **b);
-size_t			get_pos_in_a(int value, t_stack *a, t_stacks_info *info);
-size_t			get_pos_in_b(int value, t_stack *b, t_stacks_info *info);
-t_cost			cost_calc(size_t index_a, size_t index_b, t_stacks_info info);
-
-/*free*/
-void			free_stack(t_stack	**head);
+size_t	get_pos_in_a(int value, t_stack *a, t_info *info);
+size_t	get_pos_in_b(int value, t_stack *b, t_info *info);
+t_cost	cost_calc(size_t index_a, size_t index_b, t_info info);
 
 /*input_validation*/
-int				input_is_valid(char **argv);
+int		all_parameters_are_integers(char **argv);
+int		no_parameter_is_repeating(char **argv);
+int		parameters_are_not_already_sorted(char **argv);
+int		input_is_valid(char **argv);
 
-/*perform_operations*/
-void			perform_rotations(t_stack **a, t_stack **b, t_cost cost);
+/*main*/
+int		main(int argc, char **argv);
+void	init_stacks(t_stack **a, t_stack **b, char **argv);
+void	free_stack(t_stack	**head);
+
+/*perform_rotations*/
+void	perform_rotations(t_stack **a, t_stack **b, t_cost cost);
+void	perform_rotations_2(t_stack **a, t_stack **b, t_cost cost);
 
 /*sort_function*/
-void			sort_stacks(t_stack **a, t_stack **b);
+void	sort_stacks(t_stack **a, t_stack **b);
+void	push_from_a_to_b(t_stack **a, t_stack **b);
+void	sort_stack_of_three(t_stack **s);
+void	new_sort_three(t_stack **s);
+void	push_from_b_to_a(t_stack **a, t_stack **b);
 
 /*utils_stack_manip*/
-t_stack			*get_second_last(t_stack *s);
-size_t			get_stack_length(t_stack *s);
-void			update_index(t_stack **s);
-t_stacks_info	*get_stacks_info(t_stack **a, t_stack **b);
+t_stack	*get_second_last(t_stack *s);
+size_t	get_stack_length(t_stack *s);
+void	get_a_extrema(t_stack *a, t_info *info);
+void	get_b_extrema(t_stack *b, t_info *info);
+t_info	get_stacks_info(t_stack **a, t_stack **b);
 
 /*utils_standard*/
-void			push(t_stack **a, t_stack **b, char a_or_b, int times);
-void			swap(t_stack **a, t_stack **b, char a_b_or_s);
-void			rotate(t_stack **a, t_stack **b, char a_b_or_r, int times);
-void			reverse_rotate(t_stack **a, t_stack **b, char a_b_or_r, int times);
+void	push(t_stack **a, t_stack **b, char a_or_b, int times);
+void	swap(t_stack **a, t_stack **b, char a_b_or_s);
+void	rotate(t_stack **a, t_stack **b, char a_b_or_r, int times);
+void	reverse_rotate(t_stack **a, t_stack **b, char a_b_or_r, int times);
+void	update_index(t_stack **s);
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 14:57:39 by tzanchi           #+#    #+#             */
-/*   Updated: 2023/07/07 14:34:43 by tzanchi          ###   ########.fr       */
+/*   Updated: 2023/07/07 16:18:28 by tzanchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-size_t	get_pos_in_a(int value, t_stack *a, t_stacks_info *info)
+size_t	get_pos_in_a(int value, t_stack *a, t_info *info)
 {
 	size_t	position;
 
@@ -37,7 +37,7 @@ size_t	get_pos_in_a(int value, t_stack *a, t_stacks_info *info)
 	return (position);
 }
 
-size_t	get_pos_in_b(int value, t_stack *b, t_stacks_info *info)
+size_t	get_pos_in_b(int value, t_stack *b, t_info *info)
 {
 	size_t	position;
 
@@ -62,7 +62,7 @@ size_t	get_pos_in_b(int value, t_stack *b, t_stacks_info *info)
 	return (position);
 }
 
-t_cost	cost_calc(size_t index_a, size_t index_b, t_stacks_info info)
+t_cost	cost_calc(size_t index_a, size_t index_b, t_info info)
 {
 	t_cost	cost;
 	size_t	temp_cost;
@@ -130,30 +130,4 @@ t_cost	cost_calc(size_t index_a, size_t index_b, t_stacks_info info)
 		cost.rotations_2 = index_b;
 	}
 	return (cost);
-}
-
-void	push_from_a_to_b(t_stack **a, t_stack **b)
-{
-	t_stacks_info	*info;
-	t_cost			cost;
-	size_t			temp_cost;
-	size_t			position;
-	t_stack			*ptr;
-
-	info = get_stacks_info(a, b);
-	cost.cost = INT_MAX;
-	ptr = *a;
-	while (ptr)
-	{
-		position = get_pos_in_b(ptr->value, *b, info);
-		temp_cost = cost_calc(ptr->index, position, *info).cost;
-		if (temp_cost < cost.cost)
-			cost = cost_calc(ptr->index, position, *info);
-		if (cost.cost == 0)
-			break ;
-		ptr = ptr->next;
-	}
-	perform_rotations(a, b, cost);
-	push(a, b, 'b', 1);
-	free(info);
 }
