@@ -6,7 +6,7 @@
 #    By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/15 16:37:47 by tzanchi           #+#    #+#              #
-#    Updated: 2023/07/07 15:55:13 by tzanchi          ###   ########.fr        #
+#    Updated: 2023/07/07 16:22:31 by tzanchi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,13 +27,9 @@ SRC			=	cost_calculation.c \
 				utils_stack_manip.c \
 				utils_standard.c
 
-TEMP_TEST	=	temp_tests.c
-
 SRCS		=	$(addprefix ${SRCS_DIR}, ${SRC})
 
 OBJS		=	${SRCS:.c=.o}
-
-TEST_OBJS	=	${TEMP_TEST:.c=.o}
 
 all:			
 				make ${LIBFT}
@@ -60,12 +56,4 @@ fclean:			clean
 
 re:				fclean all
 
-test:
-				make ${LIBFT}
-				make ${OBJS} ${TEST_OBJS}
-				${CC} ${CFLAGS} ${SRCS} ${TEMP_TEST} -I${HEAD_DIR} ${LIBFT}
-				make fclean
-				rm -f ${TEST_OBJS}
-				clear
-
-.PHONY:			all clean fclean re test
+.PHONY:			all clean fclean re
