@@ -6,11 +6,36 @@
 /*   By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 14:57:39 by tzanchi           #+#    #+#             */
-/*   Updated: 2023/07/05 18:27:41 by tzanchi          ###   ########.fr       */
+/*   Updated: 2023/07/07 14:34:43 by tzanchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+size_t	get_pos_in_a(int value, t_stack *a, t_stacks_info *info)
+{
+	size_t	position;
+
+	if (value > info->a_max)
+		position = info->a_max_index + 1;
+	else if (value < info->a_min)
+		position = info->a_min_index;
+	else
+	{
+		while (a->next)
+		{
+			position = a->next->index;
+			if (value > a->value && value < a->next->value)
+				break ;
+			a = a->next;
+		}
+		if (!a->next)
+			position++;
+	}
+	if (position == info->a_length)
+		position = 0;
+	return (position);
+}
 
 size_t	get_pos_in_b(int value, t_stack *b, t_stacks_info *info)
 {
@@ -22,18 +47,15 @@ size_t	get_pos_in_b(int value, t_stack *b, t_stacks_info *info)
 		position = info->b_max_index;
 	else
 	{
-		if (info->b_max_index == info->b_length - 1)
-			position = 0;
-		else
+		while (b->next)
 		{
-			while (b->next)
-			{
-				position = b->next->index;
-				if (value < b->value && value > b->next->value)
-					break ;
-				b = b->next;
-			}
+			position = b->next->index;
+			if (value < b->value && value > b->next->value)
+				break ;
+			b = b->next;
 		}
+		if (!b->next)
+			position++;
 	}
 	if (position == info->b_length)
 		position = 0;
@@ -71,11 +93,11 @@ t_cost	cost_calc(size_t index_a, size_t index_b, t_stacks_info info)
 	}
 	cost.cost = ft_max(index_a, index_b);
 	if (index_a < index_b)
-		cost.ops = RR_RA;
+		cost.ops = RR_RB;
 	else if (index_a == index_b)
 		cost.ops = RR;
 	else
-		cost.ops = RR_RB;
+		cost.ops = RR_RA;
 	cost.rotations_1 = ft_min(index_a, index_b);
 	cost.rotations_2 = cost.cost - cost.rotations_1;
 	temp_cost = ft_max(info.a_length - index_a, info.b_length - index_b);
@@ -83,11 +105,11 @@ t_cost	cost_calc(size_t index_a, size_t index_b, t_stacks_info info)
 	{
 		cost.cost = temp_cost;
 		if (info.a_length - index_a < info.b_length - index_b)
-			cost.ops = RRR_RRA;
+			cost.ops = RRR_RRB;
 		else if (info.a_length - index_a == info.b_length - index_b)
 			cost.ops = RRR;
 		else
-			cost.ops = RRR_RRB;
+			cost.ops = RRR_RRA;
 		cost.rotations_1 = ft_min(info.a_length - index_a, info.b_length - index_b);
 		cost.rotations_2 = cost.cost - cost.rotations_1;
 	}
@@ -110,7 +132,7 @@ t_cost	cost_calc(size_t index_a, size_t index_b, t_stacks_info info)
 	return (cost);
 }
 
-void	find_best_element_to_move(t_stack **a, t_stack **b)
+void	push_from_a_to_b(t_stack **a, t_stack **b)
 {
 	t_stacks_info	*info;
 	t_cost			cost;
@@ -131,6 +153,7 @@ void	find_best_element_to_move(t_stack **a, t_stack **b)
 			break ;
 		ptr = ptr->next;
 	}
-	perform_ops(a, b, cost);
+	perform_rotations(a, b, cost);
+	push(a, b, 'b', 1);
 	free(info);
 }

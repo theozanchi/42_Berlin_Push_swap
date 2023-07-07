@@ -6,7 +6,7 @@
 /*   By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 21:19:31 by tzanchi           #+#    #+#             */
-/*   Updated: 2023/07/03 17:49:16 by tzanchi          ###   ########.fr       */
+/*   Updated: 2023/07/07 11:07:12 by tzanchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,35 @@ static void	get_b_extrema(t_stack *b, t_stacks_info *info)
 	info->b_max_index = max_index;
 }
 
+static void	get_a_extrema(t_stack *a, t_stacks_info *info)
+{
+	int		min;
+	size_t	min_index;
+	int		max;
+	size_t	max_index;
+
+	min = INT_MAX;
+	max = INT_MIN;
+	while (a)
+	{
+		if (a->value < min)
+		{
+			min = a->value;
+			min_index = a->index;
+		}
+		if (a->value > max)
+		{
+			max = a->value;
+			max_index = a->index;
+		}
+		a = a->next;
+	}
+	info->a_min = min;
+	info->a_min_index = min_index;
+	info->a_max = max;
+	info->a_max_index = max_index;
+}
+
 t_stacks_info	*get_stacks_info(t_stack **a, t_stack **b)
 {
 	t_stacks_info	*output;
@@ -94,6 +123,7 @@ t_stacks_info	*get_stacks_info(t_stack **a, t_stack **b)
 		return (NULL);
 	output->a_length = get_stack_length(*a);
 	output->b_length = get_stack_length(*b);
+	get_a_extrema(*a, output);
 	get_b_extrema(*b, output);
 	return (output);
 }

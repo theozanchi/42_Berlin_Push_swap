@@ -6,7 +6,7 @@
 /*   By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:03:27 by tzanchi           #+#    #+#             */
-/*   Updated: 2023/07/04 17:29:07 by tzanchi          ###   ########.fr       */
+/*   Updated: 2023/07/07 14:39:54 by tzanchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@ typedef struct s_stack
 typedef struct s_stacks_info
 {
 	size_t	a_length;
+	int		a_min;
+	size_t	a_min_index;
+	int		a_max;
+	size_t	a_max_index;
 	size_t	b_length;
 	int		b_min;
 	size_t	b_min_index;
@@ -57,7 +61,10 @@ typedef struct s_cost
 }	t_cost;
 
 /*cost_calculation*/
-void			find_best_element_to_move(t_stack **a, t_stack **b);
+void			push_from_a_to_b(t_stack **a, t_stack **b);
+size_t			get_pos_in_a(int value, t_stack *a, t_stacks_info *info);
+size_t			get_pos_in_b(int value, t_stack *b, t_stacks_info *info);
+t_cost			cost_calc(size_t index_a, size_t index_b, t_stacks_info info);
 
 /*free*/
 void			free_stack(t_stack	**head);
@@ -66,7 +73,7 @@ void			free_stack(t_stack	**head);
 int				input_is_valid(char **argv);
 
 /*perform_operations*/
-void			perform_ops(t_stack **a, t_stack **b, t_cost cost);
+void			perform_rotations(t_stack **a, t_stack **b, t_cost cost);
 
 /*sort_function*/
 void			sort_stacks(t_stack **a, t_stack **b);
