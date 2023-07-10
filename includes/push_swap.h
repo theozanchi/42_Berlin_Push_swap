@@ -6,7 +6,7 @@
 /*   By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:03:27 by tzanchi           #+#    #+#             */
-/*   Updated: 2023/07/10 15:10:33 by tzanchi          ###   ########.fr       */
+/*   Updated: 2023/07/10 16:29:41 by tzanchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int		input_is_valid(char **argv);
 
 /*main*/
 int		main(int argc, char **argv);
-void	init_stacks(t_stack **a, t_stack **b, char **argv);
+void	init_stacks(t_stack **a, t_stack **b, char **argv, int argc);
 void	free_stack(t_stack	**head);
 
 /*perform_rotations*/

@@ -6,7 +6,7 @@
 /*   By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 15:30:04 by tzanchi           #+#    #+#             */
-/*   Updated: 2023/07/10 15:13:31 by tzanchi          ###   ########.fr       */
+/*   Updated: 2023/07/10 16:36:17 by tzanchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char **argv)
 		ft_printf("%s", ERROR_MESSAGE);
 		return (1);
 	}
-	init_stacks(&a, &b, argv + 1);
+	init_stacks(&a, &b, argv, argc);
 	sort_stacks(&a, &b);
 	free_stack(&a);
 	free_stack(&b);
@@ -36,17 +36,19 @@ int	main(int argc, char **argv)
 of an integer, its index in the list and a pointer to next node
 b is initialized and set to NULL
 Returns the length of the stack created*/
-void	init_stacks(t_stack **a, t_stack **b, char **argv)
+void	init_stacks(t_stack **a, t_stack **b, char **argv, int argc)
 {
-	size_t	index;
+	t_stack	*new;
 
-	index = 0;
-	while (*argv)
+	*a = NULL;
+	while (argc > 1)
 	{
-		*a = malloc(sizeof(t_stack));
-		(*a)->value = ft_atoi(*argv++);
-		(*a)->index = index++;
-		a = &((*a)->next);
+		new = malloc(sizeof(t_stack));
+		new->value = ft_atoi(argv[argc - 1]);
+		new->index = argc - 2;
+		new->next = *a;
+		*a = new;
+		argc--;
 	}
 	*b = NULL;
 }
