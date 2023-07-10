@@ -6,7 +6,7 @@
 /*   By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 12:53:45 by tzanchi           #+#    #+#             */
-/*   Updated: 2023/07/07 16:14:46 by tzanchi          ###   ########.fr       */
+/*   Updated: 2023/07/10 11:40:38 by tzanchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,9 @@ void	push_from_a_to_b(t_stack **a, t_stack **b)
 
 void	sort_stack_of_three(t_stack **s)
 {
+	if ((*s)->value < (*s)->next->value
+		&& (*s)->next->value < (*s)->next->next->value)
+		return ;
 	if ((*s)->value < (*s)->next->value
 		&& (*s)->value < (*s)->next->next->value)
 	{
