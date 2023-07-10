@@ -6,7 +6,7 @@
 /*   By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:03:27 by tzanchi           #+#    #+#             */
-/*   Updated: 2023/07/10 17:50:39 by tzanchi          ###   ########.fr       */
+/*   Updated: 2023/07/10 20:32:49 by tzanchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ t_cost	cost_calc(size_t index_a, size_t index_b, t_info info);
 
 /*sort_function*/
 void	sort_stacks(t_stack **a, t_stack **b);
+void	sort_stack_of_two(t_stack **s);
 void	sort_stack_of_three(t_stack **s);
 void	put_a_in_ascending_order(t_stack **a, t_stack **b);
 

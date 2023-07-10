@@ -6,7 +6,7 @@
 /*   By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 12:53:45 by tzanchi           #+#    #+#             */
-/*   Updated: 2023/07/10 17:51:08 by tzanchi          ###   ########.fr       */
+/*   Updated: 2023/07/10 20:33:04 by tzanchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	sort_stacks(t_stack **a, t_stack **b)
 	length = get_stack_length(*a);
 	if (length == 2)
 	{
-		swap(a, b, 'a');
+		sort_stack_of_two(a);
 		return ;
 	}
 	if (length > 3)
@@ -35,14 +35,22 @@ void	sort_stacks(t_stack **a, t_stack **b)
 	length -= 2;
 	while (length-- > 3)
 		push_from_a_to_b(a, b);
-	sort_stack_of_three(a);
-	if (*b)
-	{
-		length = get_stack_length(*b);
-		while (length--)
-			push_from_b_to_a(a, b);
-	}
+	if (get_stack_length(*a) == 2)
+		sort_stack_of_two(a);
+	else
+		sort_stack_of_three(a);
+	length = get_stack_length(*b);
+	while (length--)
+		push_from_b_to_a(a, b);
 	put_a_in_ascending_order(a, b);
+}
+
+/*Sorts a stack of two elements in ascending order by performing one operation
+only.*/
+void	sort_stack_of_two(t_stack **s)
+{
+	if ((*s)->value > (*s)->next->value)
+		swap(s, s, 'a');
 }
 
 /*Sorts a stack of three elements in ascending order by performing one or two
