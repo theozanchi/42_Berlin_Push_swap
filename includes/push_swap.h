@@ -6,7 +6,7 @@
 /*   By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:03:27 by tzanchi           #+#    #+#             */
-/*   Updated: 2023/07/07 16:11:06 by tzanchi          ###   ########.fr       */
+/*   Updated: 2023/07/10 12:02:25 by tzanchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ void	perform_rotations_2(t_stack **a, t_stack **b, t_cost cost);
 void	sort_stacks(t_stack **a, t_stack **b);
 void	push_from_a_to_b(t_stack **a, t_stack **b);
 void	sort_stack_of_three(t_stack **s);
-void	new_sort_three(t_stack **s);
 void	push_from_b_to_a(t_stack **a, t_stack **b);
+void	put_a_in_ascending_order(t_stack **a, t_stack **b);
 
 /*utils_stack_manip*/
 t_stack	*get_second_last(t_stack *s);

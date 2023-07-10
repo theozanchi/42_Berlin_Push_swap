@@ -6,7 +6,7 @@
 /*   By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 12:53:45 by tzanchi           #+#    #+#             */
-/*   Updated: 2023/07/10 11:40:38 by tzanchi          ###   ########.fr       */
+/*   Updated: 2023/07/10 12:03:13 by tzanchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,13 @@
 void	sort_stacks(t_stack **a, t_stack **b)
 {
 	size_t	length;
-	t_info	info;
 
 	length = get_stack_length(*a);
+	if (length == 2)
+	{
+		swap(a, b, 'a');
+		return ;
+	}
 	if (length > 3)
 		push(a, b, 'b', 2);
 	length -= 2;
@@ -30,14 +34,7 @@ void	sort_stacks(t_stack **a, t_stack **b)
 		while (length--)
 			push_from_b_to_a(a, b);
 	}
-	info = get_stacks_info(a, b);
-	if (info.a_min_index != 0)
-	{
-		if (info.a_min_index < info.a_length)
-			rotate(a, b, 'a', info.a_min_index);
-		else
-			reverse_rotate(a, b, 'a', info.a_length - info.a_min_index);
-	}
+	put_a_in_ascending_order(a, b);
 }
 
 void	push_from_a_to_b(t_stack **a, t_stack **b)
@@ -117,4 +114,18 @@ void	push_from_b_to_a(t_stack **a, t_stack **b)
 	}
 	perform_rotations(a, b, cost);
 	push(a, b, 'a', 1);
+}
+
+void	put_a_in_ascending_order(t_stack **a, t_stack **b)
+{
+	t_info	info;
+
+	info = get_stacks_info(a, b);
+	if (info.a_min_index != 0)
+	{
+		if (info.a_min_index < info.a_length)
+			rotate(a, b, 'a', info.a_min_index);
+		else
+			reverse_rotate(a, b, 'a', info.a_length - info.a_min_index);
+	}
 }

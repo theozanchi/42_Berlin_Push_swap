@@ -6,7 +6,7 @@
 /*   By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 15:30:04 by tzanchi           #+#    #+#             */
-/*   Updated: 2023/07/07 15:06:28 by tzanchi          ###   ########.fr       */
+/*   Updated: 2023/07/10 12:10:47 by tzanchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(int argc, char **argv)
 	t_stack	*a;
 	t_stack	*b;
 
-	if (argc < 2 || !input_is_valid(argv + 1))
+	if (argc <= 2 || !input_is_valid(argv + 1))
 	{
 		ft_printf("%s", ERROR_MESSAGE);
 		return (1);
@@ -38,7 +38,6 @@ void	init_stacks(t_stack **a, t_stack **b, char **argv)
 	size_t	index;
 
 	index = 0;
-	*a = malloc(sizeof(t_stack));
 	while (*argv)
 	{
 		*a = malloc(sizeof(t_stack));
@@ -46,7 +45,6 @@ void	init_stacks(t_stack **a, t_stack **b, char **argv)
 		(*a)->index = index++;
 		a = &((*a)->next);
 	}
-	*b = malloc(sizeof(t_stack));
 	*b = NULL;
 }
 
