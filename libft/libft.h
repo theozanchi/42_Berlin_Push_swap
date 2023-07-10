@@ -6,7 +6,7 @@
 /*   By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:03:46 by tzanchi           #+#    #+#             */
-/*   Updated: 2023/07/04 10:49:24 by tzanchi          ###   ########.fr       */
+/*   Updated: 2023/07/10 17:01:09 by tzanchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,6 @@ size_t	putptr_base_count(void *ptr, char *base, int first_loop_flag);
 char	*get_next_line(int fd);
 int		ft_min(int a, int b);
 int		ft_max(int a, int b);
+long	ft_atol(const char *nptr);
 
 #endif
