@@ -6,11 +6,61 @@
 /*   By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 14:57:39 by tzanchi           #+#    #+#             */
-/*   Updated: 2023/07/07 16:18:28 by tzanchi          ###   ########.fr       */
+/*   Updated: 2023/07/10 15:02:56 by tzanchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	push_from_a_to_b(t_stack **a, t_stack **b)
+{
+	t_info	info;
+	t_cost	cost;
+	size_t	temp_cost;
+	size_t	position;
+	t_stack	*ptr;
+
+	info = get_stacks_info(a, b);
+	cost.cost = INT_MAX;
+	ptr = *a;
+	while (ptr)
+	{
+		position = get_pos_in_b(ptr->value, *b, &info);
+		temp_cost = cost_calc(ptr->index, position, info).cost;
+		if (temp_cost < cost.cost)
+			cost = cost_calc(ptr->index, position, info);
+		if (cost.cost == 0)
+			break ;
+		ptr = ptr->next;
+	}
+	perform_rotations(a, b, cost);
+	push(a, b, 'b', 1);
+}
+
+void	push_from_b_to_a(t_stack **a, t_stack **b)
+{
+	t_info	info;
+	t_cost	cost;
+	size_t	temp_cost;
+	size_t	position;
+	t_stack	*ptr;
+
+	info = get_stacks_info(a, b);
+	cost.cost = INT_MAX;
+	ptr = *b;
+	while (ptr)
+	{
+		position = get_pos_in_a(ptr->value, *a, &info);
+		temp_cost = cost_calc(position, ptr->index, info).cost;
+		if (temp_cost < cost.cost)
+			cost = cost_calc(position, ptr->index, info);
+		if (cost.cost == 0)
+			break ;
+		ptr = ptr->next;
+	}
+	perform_rotations(a, b, cost);
+	push(a, b, 'a', 1);
+}
 
 size_t	get_pos_in_a(int value, t_stack *a, t_info *info)
 {
@@ -65,69 +115,19 @@ size_t	get_pos_in_b(int value, t_stack *b, t_info *info)
 t_cost	cost_calc(size_t index_a, size_t index_b, t_info info)
 {
 	t_cost	cost;
-	size_t	temp_cost;
 
-	if (index_a == 0 && index_b == 0)
+	if (index_a == 0 || index_b == 0)
 	{
-		cost.cost = 0;
-		cost.ops = NO_MOVE;
+		handle_index_zero(&index_a, &index_b, &info, &cost);
 		return (cost);
 	}
-	if (index_a == 0)
-	{
-		cost.cost = ft_min(index_b, info.b_length - index_b);
-		if (index_b < info.b_length - index_b)
-			cost.ops = RB;
-		else
-			cost.ops = RRB;
-		return (cost);
-	}
-	if (index_b == 0)
-	{
-		cost.cost = ft_min(index_a, info.a_length - index_a);
-		if (index_a < info.a_length - index_a)
-			cost.ops = RA;
-		else
-			cost.ops = RRA;
-		return (cost);
-	}
-	cost.cost = ft_max(index_a, index_b);
-	if (index_a < index_b)
-		cost.ops = RR_RB;
-	else if (index_a == index_b)
-		cost.ops = RR;
-	else
-		cost.ops = RR_RA;
-	cost.rotations_1 = ft_min(index_a, index_b);
-	cost.rotations_2 = cost.cost - cost.rotations_1;
-	temp_cost = ft_max(info.a_length - index_a, info.b_length - index_b);
-	if (temp_cost < cost.cost)
-	{
-		cost.cost = temp_cost;
-		if (info.a_length - index_a < info.b_length - index_b)
-			cost.ops = RRR_RRB;
-		else if (info.a_length - index_a == info.b_length - index_b)
-			cost.ops = RRR;
-		else
-			cost.ops = RRR_RRA;
-		cost.rotations_1 = ft_min(info.a_length - index_a, info.b_length - index_b);
-		cost.rotations_2 = cost.cost - cost.rotations_1;
-	}
-	temp_cost = index_a + info.b_length - index_b;
-	if (temp_cost < cost.cost)
-	{
-		cost.cost = temp_cost;
-		cost.ops = RA_RRB;
-		cost.rotations_1 = index_a;
-		cost.rotations_2 = info.b_length - index_b;
-	}
-	temp_cost = info.a_length - index_a + index_b;
-	if (temp_cost < cost.cost)
-	{
-		cost.cost = temp_cost;
-		cost.ops = RRA_RB;
-		cost.rotations_1 = info.a_length - index_a;
-		cost.rotations_2 = index_b;
-	}
+	handle_rr_r(&index_a, &index_b, &cost);
+	if ((size_t)ft_max(info.a_length - index_a, info.b_length - index_b)
+		< cost.cost)
+		handle_rrr_rr(&index_a, &index_b, &info, &cost);
+	if (index_a + info.b_length - index_b < cost.cost)
+		handle_ra_rrb(&index_a, &index_b, &info, &cost);
+	if (info.a_length - index_a + index_b < cost.cost)
+		handle_rra_rb(&index_a, &index_b, &info, &cost);
 	return (cost);
 }

@@ -6,7 +6,7 @@
 /*   By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 12:53:45 by tzanchi           #+#    #+#             */
-/*   Updated: 2023/07/10 12:03:13 by tzanchi          ###   ########.fr       */
+/*   Updated: 2023/07/10 15:04:37 by tzanchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,31 +37,6 @@ void	sort_stacks(t_stack **a, t_stack **b)
 	put_a_in_ascending_order(a, b);
 }
 
-void	push_from_a_to_b(t_stack **a, t_stack **b)
-{
-	t_info	info;
-	t_cost	cost;
-	size_t	temp_cost;
-	size_t	position;
-	t_stack	*ptr;
-
-	info = get_stacks_info(a, b);
-	cost.cost = INT_MAX;
-	ptr = *a;
-	while (ptr)
-	{
-		position = get_pos_in_b(ptr->value, *b, &info);
-		temp_cost = cost_calc(ptr->index, position, info).cost;
-		if (temp_cost < cost.cost)
-			cost = cost_calc(ptr->index, position, info);
-		if (cost.cost == 0)
-			break ;
-		ptr = ptr->next;
-	}
-	perform_rotations(a, b, cost);
-	push(a, b, 'b', 1);
-}
-
 void	sort_stack_of_three(t_stack **s)
 {
 	if ((*s)->value < (*s)->next->value
@@ -89,31 +64,6 @@ void	sort_stack_of_three(t_stack **s)
 		else
 			swap(s, s, 'a');
 	}
-}
-
-void	push_from_b_to_a(t_stack **a, t_stack **b)
-{
-	t_info	info;
-	t_cost	cost;
-	size_t	temp_cost;
-	size_t	position;
-	t_stack	*ptr;
-
-	info = get_stacks_info(a, b);
-	cost.cost = INT_MAX;
-	ptr = *b;
-	while (ptr)
-	{
-		position = get_pos_in_a(ptr->value, *a, &info);
-		temp_cost = cost_calc(position, ptr->index, info).cost;
-		if (temp_cost < cost.cost)
-			cost = cost_calc(position, ptr->index, info);
-		if (cost.cost == 0)
-			break ;
-		ptr = ptr->next;
-	}
-	perform_rotations(a, b, cost);
-	push(a, b, 'a', 1);
 }
 
 void	put_a_in_ascending_order(t_stack **a, t_stack **b)
