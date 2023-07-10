@@ -6,7 +6,7 @@
 /*   By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 15:30:04 by tzanchi           #+#    #+#             */
-/*   Updated: 2023/07/10 17:15:16 by tzanchi          ###   ########.fr       */
+/*   Updated: 2023/07/10 17:23:35 by tzanchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 	t_stack	*a;
 	t_stack	*b;
 
-	if (argc == 2)
+	if (argc <= 2)
 		return (0);
 	if (!input_is_valid(argv + 1))
 	{
