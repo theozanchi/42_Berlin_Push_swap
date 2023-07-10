@@ -6,7 +6,7 @@
 /*   By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 12:53:45 by tzanchi           #+#    #+#             */
-/*   Updated: 2023/07/10 15:26:03 by tzanchi          ###   ########.fr       */
+/*   Updated: 2023/07/10 17:51:08 by tzanchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	sort_stacks(t_stack **a, t_stack **b)
 {
 	size_t	length;
 
+	if (stack_is_already_sorted(*a))
+		return ;
 	length = get_stack_length(*a);
 	if (length == 2)
 	{

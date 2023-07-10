@@ -6,7 +6,7 @@
 /*   By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:03:27 by tzanchi           #+#    #+#             */
-/*   Updated: 2023/07/10 17:03:34 by tzanchi          ###   ########.fr       */
+/*   Updated: 2023/07/10 17:50:39 by tzanchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ typedef struct s_cost
 /*input_validation*/
 int		all_parameters_are_integers(char **argv);
 int		no_parameter_is_repeating(char **argv);
-int		parameters_are_not_already_sorted(char **argv);
 int		input_is_valid(char **argv);
+int		stack_is_already_sorted(t_stack *s);
 
 /*main*/
 int		main(int argc, char **argv);
