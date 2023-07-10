@@ -6,12 +6,16 @@
 /*   By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 12:43:33 by tzanchi           #+#    #+#             */
-/*   Updated: 2023/07/10 15:07:21 by tzanchi          ###   ########.fr       */
+/*   Updated: 2023/07/10 15:29:11 by tzanchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*Calculates the cost of puting indexes 'i_a' and 'i_b' on top of their
+respective stack if one of them at least is equal to zero.
+Returns a t_cost structure 'cost' that contains the most efficient operation to
+perform.*/
 void	handle_index_zero(size_t *i_a, size_t *i_b, t_info *info, t_cost *cost)
 {
 	if (*i_a == 0 && *i_b == 0)
@@ -39,6 +43,10 @@ void	handle_index_zero(size_t *i_a, size_t *i_b, t_info *info, t_cost *cost)
 	}
 }
 
+/*Calculates the cost of puting indexes 'i_a' and 'i_b' on top of their
+respective stack by rotating both stacks before rotating a, b or none.
+Returns a t_cost structure 'cost' that contains the most efficient operation to
+perform.*/
 void	handle_rr_r(size_t *i_a, size_t *i_b, t_cost *cost)
 {
 	cost->cost = ft_max(*i_a, *i_b);
@@ -52,6 +60,10 @@ void	handle_rr_r(size_t *i_a, size_t *i_b, t_cost *cost)
 	cost->rotations_2 = cost->cost - cost->rotations_1;
 }
 
+/*Calculates the cost of puting indexes 'i_a' and 'i_b' on top of their
+respective stack by reverse rotating both stacks before rotating a, b or none.
+Returns a t_cost structure 'cost' that contains the most efficient operation to
+perform.*/
 void	handle_rrr_rr(size_t *i_a, size_t *i_b, t_info *info, t_cost *cost)
 {
 	cost->cost = ft_max(info->a_length - *i_a, info->b_length - *i_b);
@@ -65,6 +77,10 @@ void	handle_rrr_rr(size_t *i_a, size_t *i_b, t_info *info, t_cost *cost)
 	cost->rotations_2 = cost->cost - cost->rotations_1;
 }
 
+/*Calculates the cost of puting indexes 'i_a' and 'i_b' on top of their
+respective stack by rotating stack a before reverse rotating stack b.
+Returns a t_cost structure 'cost' that contains the most efficient operation to
+perform.*/
 void	handle_ra_rrb(size_t *i_a, size_t *i_b, t_info *info, t_cost *cost)
 {
 	cost->cost = *i_a + info->b_length - *i_b;
@@ -73,6 +89,10 @@ void	handle_ra_rrb(size_t *i_a, size_t *i_b, t_info *info, t_cost *cost)
 	cost->rotations_2 = info->b_length - *i_b;
 }
 
+/*Calculates the cost of puting indexes 'i_a' and 'i_b' on top of their
+respective stack by reverse rotating stack a before rotating stack b.
+Returns a t_cost structure 'cost' that contains the most efficient operation to
+perform.*/
 void	handle_rra_rb(size_t *i_a, size_t *i_b, t_info *info, t_cost *cost)
 {
 	cost->cost = info->a_length - *i_a + *i_b;

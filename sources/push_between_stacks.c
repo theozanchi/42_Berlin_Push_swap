@@ -1,17 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cost_calculation.c                                 :+:      :+:    :+:   */
+/*   push_between_stacks.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 14:57:39 by tzanchi           #+#    #+#             */
-/*   Updated: 2023/07/10 15:02:56 by tzanchi          ###   ########.fr       */
+/*   Updated: 2023/07/10 15:21:03 by tzanchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*Loops through all elements of a to find the element that will require the less
+moves to be pushed from a to b at the correct position, perform the operations
+needed and pushes the top element of a to b*/
 void	push_from_a_to_b(t_stack **a, t_stack **b)
 {
 	t_info	info;
@@ -37,6 +40,9 @@ void	push_from_a_to_b(t_stack **a, t_stack **b)
 	push(a, b, 'b', 1);
 }
 
+/*Loops through all elements of b to find the element that will require the less
+moves to be pushed from b to a at the correct position, perform the operations
+needed and pushes the top element of b to a*/
 void	push_from_b_to_a(t_stack **a, t_stack **b)
 {
 	t_info	info;
@@ -62,6 +68,8 @@ void	push_from_b_to_a(t_stack **a, t_stack **b)
 	push(a, b, 'a', 1);
 }
 
+/*Calculates the index that corresponds to the correct position of a number
+'value' in the stack 'a', 'a' beeing sorted in ascending order*/
 size_t	get_pos_in_a(int value, t_stack *a, t_info *info)
 {
 	size_t	position;
@@ -87,6 +95,8 @@ size_t	get_pos_in_a(int value, t_stack *a, t_info *info)
 	return (position);
 }
 
+/*Calculates the index that corresponds to the correct position of a number
+'value' in the stack 'b', 'b' beeing sorted in descending order*/
 size_t	get_pos_in_b(int value, t_stack *b, t_info *info)
 {
 	size_t	position;
@@ -112,6 +122,10 @@ size_t	get_pos_in_b(int value, t_stack *b, t_info *info)
 	return (position);
 }
 
+/*Calculates the cost in terms of number of rotations needed to put both indexes
+'index_a' and 'index_b' at the top of their stack, and returns a t_cost structure
+'cost' that contains the cost of the operation, the operation to perform and the
+numbers of rotations to perform*/
 t_cost	cost_calc(size_t index_a, size_t index_b, t_info info)
 {
 	t_cost	cost;

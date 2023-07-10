@@ -6,15 +6,15 @@
 /*   By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 16:48:06 by tzanchi           #+#    #+#             */
-/*   Updated: 2023/07/07 15:52:06 by tzanchi          ###   ########.fr       */
+/*   Updated: 2023/07/10 15:32:03 by tzanchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /*Adds the element from one stack to the other (a->b or b->a) and prints the
-operation
-The stack index is updated after the operation*/
+operation.
+The stack index is updated after the operation.*/
 void	push(t_stack **a, t_stack **b, char a_or_b, int times)
 {
 	t_stack	*temp;
@@ -44,8 +44,8 @@ void	push(t_stack **a, t_stack **b, char a_or_b, int times)
 }
 
 /*Swap the two first elements of one or two stack depending on 'a_b_or_s'and
-prints the operation
-The stack index is updated after the operation*/
+prints the operation.
+The stack index is updated after the operation.*/
 void	swap(t_stack **a, t_stack **b, char a_b_or_s)
 {
 	t_stack	*first;
@@ -76,7 +76,7 @@ void	swap(t_stack **a, t_stack **b, char a_b_or_s)
 
 /*Shift up all elements of one or two stack depending on 'a_b_or_r' by 1.
 The first element becomes the last one.
-The stack index is updated after the operation*/
+The stack index is updated after the operation.*/
 void	rotate(t_stack **a, t_stack **b, char a_b_or_r, int times)
 {
 	t_stack	*first;
@@ -108,7 +108,7 @@ void	rotate(t_stack **a, t_stack **b, char a_b_or_r, int times)
 
 /*Shift down all elements of one or two stack depending on 'a_b_or_r' by 1.
 The last element becomes the first one.
-The stack index is updated after the operation*/
+The stack index is updated after the operation.*/
 void	reverse_rotate(t_stack **a, t_stack **b, char a_b_or_r, int times)
 {
 	t_stack	*second_last;
@@ -138,7 +138,7 @@ void	reverse_rotate(t_stack **a, t_stack **b, char a_b_or_r, int times)
 	reverse_rotate(a, b, a_b_or_r, times - 1);
 }
 
-/*Runs through the stack and updates the index of each element*/
+/*Runs through the stack and updates the index of each element.*/
 void	update_index(t_stack **s)
 {
 	size_t	index;

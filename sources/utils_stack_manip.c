@@ -6,13 +6,13 @@
 /*   By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 21:19:31 by tzanchi           #+#    #+#             */
-/*   Updated: 2023/07/07 15:57:20 by tzanchi          ###   ########.fr       */
+/*   Updated: 2023/07/10 15:32:07 by tzanchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*Returns the second last element of a stack 's'*/
+/*Returns the second last element of a stack 's'.*/
 t_stack	*get_second_last(t_stack *s)
 {
 	t_stack	*second_last;
@@ -27,7 +27,7 @@ t_stack	*get_second_last(t_stack *s)
 	return (second_last);
 }
 
-/*Returns the length of a stack 's'*/
+/*Returns the length of a stack 's'.*/
 size_t	get_stack_length(t_stack *s)
 {
 	size_t	length;
@@ -41,6 +41,8 @@ size_t	get_stack_length(t_stack *s)
 	return (length);
 }
 
+/*Updating a structure t_info pointed by 'info' with the min value, min value
+index, max value and max value index of stack a.*/
 void	get_a_extrema(t_stack *a, t_info *info)
 {
 	int		min;
@@ -70,6 +72,8 @@ void	get_a_extrema(t_stack *a, t_info *info)
 	info->a_max_index = max_index;
 }
 
+/*Updating a structure t_info pointed by 'info' with the min value, min value
+index, max value and max value index of stack b.*/
 void	get_b_extrema(t_stack *b, t_info *info)
 {
 	int		min;
@@ -99,6 +103,8 @@ void	get_b_extrema(t_stack *b, t_info *info)
 	info->b_max_index = max_index;
 }
 
+/*Returns a structure t_info 'output' that contains both stacks length, min and
+max values and indexes.*/
 t_info	get_stacks_info(t_stack **a, t_stack **b)
 {
 	t_info	output;

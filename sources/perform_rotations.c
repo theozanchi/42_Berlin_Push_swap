@@ -1,17 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   perform_operations.c                               :+:      :+:    :+:   */
+/*   perform_rotations.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 15:54:56 by tzanchi           #+#    #+#             */
-/*   Updated: 2023/07/07 15:05:02 by tzanchi          ###   ########.fr       */
+/*   Updated: 2023/07/10 15:15:37 by tzanchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*Performs the operations listed in cost.ops on stacks a and b. First part of
+the function deals with NO_MOVE, RA, RRA, RB, RRB, RR, RRR, RR_RA and RR_RB*/
 void	perform_rotations(t_stack **a, t_stack **b, t_cost cost)
 {
 	if (cost.ops == RA)
@@ -38,6 +40,8 @@ void	perform_rotations(t_stack **a, t_stack **b, t_cost cost)
 		perform_rotations_2(a, b, cost);
 }
 
+/*Performs the operations listed in cost.ops on stacks a and b. Second part of
+the function deals with RRR_RRA, RRR_RRB, RA_RRB and RRA_RB*/
 void	perform_rotations_2(t_stack **a, t_stack **b, t_cost cost)
 {
 	if (cost.ops == RRR_RRA || cost.ops == RRR_RRB)
