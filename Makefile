@@ -6,12 +6,12 @@
 #    By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/15 16:37:47 by tzanchi           #+#    #+#              #
-#    Updated: 2023/07/10 16:53:08 by tzanchi          ###   ########.fr        #
+#    Updated: 2023/07/10 18:09:19 by tzanchi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror -g
+CFLAGS		=	-Wall -Wextra -Werror -g -fsanitize=address
 NAME		=	push_swap
 LIBFT		=	libft.a
 

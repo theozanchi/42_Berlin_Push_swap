@@ -6,7 +6,7 @@
 /*   By: tzanchi <tzanchi@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 15:30:04 by tzanchi           #+#    #+#             */
-/*   Updated: 2023/07/10 17:49:53 by tzanchi          ###   ########.fr       */
+/*   Updated: 2023/07/10 18:09:41 by tzanchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,10 @@ int	init_stacks(t_stack **a, t_stack **b, char **argv, int argc)
 	{
 		new = malloc(sizeof(t_stack));
 		if (ft_atol(argv[argc - 1]) < 0 || ft_atol(argv[argc - 1]) > INT_MAX)
+		{
+			free(new);
 			return (1);
+		}
 		new->value = ft_atoi(argv[argc - 1]);
 		new->index = argc - 2;
 		new->next = *a;
